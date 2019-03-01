@@ -46,13 +46,13 @@ After the extraction, you can use HPatches benchmarking tools to evaluate GeoDes
 
 ```bash
 cd <hpatches_benchmark>/python
-python hpatches_eval.py --descr-name='geodesc' \
+python hpatches_eval.py --descr-name=geodesc \
     --task=verification --task=matching --task=retrieval --split=full
 ```
 
 And then display the results:
 ```bash
-python hpatches_results.py --descr-name='geodesc' \
+python hpatches_results.py --descr-name=geodesc \
     --task=verification --task=matching --task=retrieval --split=full --results-dir=
 ```
 
