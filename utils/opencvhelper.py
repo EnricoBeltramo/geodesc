@@ -7,7 +7,7 @@ OpenCV helper.
 from __future__ import print_function
 
 from threading import Thread
-from Queue import Queue
+from queue import Queue
 
 import numpy as np
 
@@ -115,7 +115,7 @@ class SiftWrapper(object):
                 elif i == 0:
                     src = self.pyr[(o - 1) * (self.n_octave_layers + 3) + self.n_octave_layers]
                     dst = cv2.resize(
-                        src, (src.shape[1] / 2, src.shape[0] / 2), interpolation=cv2.INTER_NEAREST)
+                        src, (int(src.shape[1] / 2), int(src.shape[0] / 2)), interpolation=cv2.INTER_NEAREST)
                 else:
                     src = self.pyr[o * (self.n_octave_layers + 3) + i - 1]
                     dst = cv2.GaussianBlur(src, None, sig[i])
@@ -250,7 +250,7 @@ class MatcherWrapper(object):
         good_kpts1 = np.array([cv_kpts1[m.queryIdx].pt for m in good_matches])
         good_kpts2 = np.array([cv_kpts2[m.trainIdx].pt for m in good_matches])
 
-        _, mask = cv2.findFundamentalMat(good_kpts1, good_kpts2, cv2.RANSAC, 4.0, confidence=0.999)
+        _, mask = cv2.findFundamentalMat(points1=good_kpts1,points2= good_kpts2,method= cv2.RANSAC,param1=4.0,param2=0.999)
         n_inlier = np.count_nonzero(mask)
         print(info, 'n_putative', len(good_matches), 'n_inlier', n_inlier)
         return good_matches, mask

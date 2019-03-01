@@ -33,7 +33,7 @@ tf.app.flags.DEFINE_string('hpatches_seq_list', os.path.join(CURDIR, 'hpatches_s
 def load_seq(seq_path):
     """Load HPatches sequences."""
     seq = cv2.imread(seq_path, 0)
-    n_patch = seq.shape[0] / 65
+    n_patch = int(seq.shape[0] / 65)
     seq = np.reshape(seq, (n_patch, 65, 65, 1)).astype(np.float32)
     resized_seq = np.zeros((n_patch, 32, 32), np.float32)
 

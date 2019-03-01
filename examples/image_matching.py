@@ -11,7 +11,7 @@ import sys
 import time
 
 from threading import Thread
-from Queue import Queue
+from queue import Queue
 
 import cv2
 import numpy as np
